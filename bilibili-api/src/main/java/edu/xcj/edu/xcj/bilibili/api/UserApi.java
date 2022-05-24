@@ -35,7 +35,7 @@ public class UserApi {
      * 登录
      * */
     @PostMapping("/user-tokens")
-    public JsonResponse<String> login(@RequestBody User user){
+    public JsonResponse<String> login(@RequestBody User user) throws  Exception{
        String token= userService.login(user);
        return new JsonResponse<>(token);
     }

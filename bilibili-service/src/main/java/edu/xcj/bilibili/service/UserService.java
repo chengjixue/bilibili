@@ -68,7 +68,7 @@ public class UserService {
     *
     * 登录
     * */
-    public String login(User user) {
+    public String login(User user) throws Exception{
         String phone = user.getPhone();
         if (StringUtils.isNullOrEmpty(phone)) {
             throw new ConditionException("手机号不能为空");
@@ -90,7 +90,6 @@ public class UserService {
             throw new ConditionException("密码错误!");
         }
     //    生成用户令牌
-        TokenUtil tokenUtil = new TokenUtil();
-        return tokenUtil.generateToken(dbUser.getId());
+        return TokenUtil.generateToken(dbUser.getId());
     }
 }
