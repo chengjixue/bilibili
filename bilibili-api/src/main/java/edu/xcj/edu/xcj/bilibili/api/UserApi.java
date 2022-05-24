@@ -1,5 +1,6 @@
 package edu.xcj.edu.xcj.bilibili.api;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import edu.xcj.bilibili.domain.JsonResponse;
 import edu.xcj.bilibili.domain.User;
 import edu.xcj.bilibili.service.UserService;
@@ -28,5 +29,14 @@ public class UserApi {
     public JsonResponse<String> addUser(@RequestBody User user){
         userService.addUser(user);
         return JsonResponse.success();
+    }
+    /*
+     *
+     * 登录
+     * */
+    @PostMapping("/user-tokens")
+    public JsonResponse<String> login(@RequestBody User user){
+       String token= userService.login(user);
+       return new JsonResponse<>(token);
     }
 }
