@@ -1,5 +1,7 @@
 package edu.xcj.bilibili.dao;
 
+import edu.xcj.bilibili.domain.User;
+import edu.xcj.bilibili.domain.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -11,6 +13,9 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserDao {
 
 
+    User getUserByPhone(String phone);
 
+    Integer addUser(User user);
 
+    Integer addUserInfo(UserInfo userInfo);
 }
