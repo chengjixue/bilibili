@@ -7,12 +7,24 @@
         where phone = #{phone}
     </select>
     <insert id="addUser" parameterType="edu.xcj.bilibili.domain.User" useGeneratedKeys="true" keyProperty="id">
-    insert into t_user(phone, password, email, salt,createTime)
-    values(#{phone}, #{password}, #{email}, #{salt},#{createTime})
+        insert into t_user(phone, password, email, salt, createTime)
+        values (#{phone}, #{password}, #{email}, #{salt}, #{createTime})
     </insert>
-<!--    用户信息表-->
+    <!--    用户信息表-->
     <insert id="addUserInfo" parameterType="edu.xcj.bilibili.domain.UserInfo">
-        insert into t_user_info(userId, nick, avatar, sign,gender,birth,createTime)
-        values(#{userId}, #{nick}, #{avatar}, #{sign},#{gender},#{birth},#{createTime})
+        insert into t_user_info(userId, nick, avatar, sign, gender, birth, createTime)
+        values (#{userId}, #{nick}, #{avatar}, #{sign}, #{gender}, #{birth}, #{createTime})
     </insert>
+
+    <select id="getUserById" parameterType="java.lang.Long" resultType="edu.xcj.bilibili.domain.User">
+        select *
+        from t_user
+        where id = #{id}
+    </select>
+
+    <select id="getUserInfoByUserId" resultType="edu.xcj.bilibili.domain.UserInfo" parameterType="java.lang.Long">
+        select *
+        from t_user_info
+        where userId = #{userId}
+    </select>
 </mapper>
