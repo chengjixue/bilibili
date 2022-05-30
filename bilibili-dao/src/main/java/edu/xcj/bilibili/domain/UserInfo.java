@@ -1,5 +1,8 @@
 package edu.xcj.bilibili.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -15,6 +18,7 @@ public class UserInfo {
     private String sign;
     private String gender;
     private String birth;
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     private Date updateTime;
 

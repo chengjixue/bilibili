@@ -1,5 +1,9 @@
 package edu.xcj.bilibili.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -13,6 +17,7 @@ public class User {
     private String email; // 邮箱
     private String password; // 密码
     private String salt; // 盐值
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date createTime; // 创建时间
     private Date updateTime; // 更新时间
     private UserInfo userInfo;
