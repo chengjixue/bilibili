@@ -64,11 +64,12 @@ public class UserService {
     public User getUserByPhone(String phone) {
         return userDao.getUserByPhone(phone);
     }
+
     /*
-    *
-    * 登录
-    * */
-    public String login(User user) throws Exception{
+     *
+     * 登录
+     * */
+    public String login(User user) throws Exception {
         String phone = user.getPhone();
         if (StringUtils.isNullOrEmpty(phone)) {
             throw new ConditionException("手机号不能为空");
@@ -80,22 +81,22 @@ public class UserService {
         String password = user.getPassword();
         String rawPassword;
         try {
-            rawPassword= RSAUtil.decrypt(password);
+            rawPassword = RSAUtil.decrypt(password);
         } catch (Exception e) {
             throw new ConditionException("解密失败!");
         }
-        String salt=dbUser.getSalt();
+        String salt = dbUser.getSalt();
         String md5Password = MD5Util.sign(rawPassword, salt, "UTF-8");
         if (md5Password.equals(dbUser.getPassword())) {
             throw new ConditionException("密码错误!");
         }
-    //    生成用户令牌
+        //    生成用户令牌
         return TokenUtil.generateToken(dbUser.getId());
     }
 
     public User getUserInfo(Long userId) {
-        User user=userDao.getUserById(userId);
-        UserInfo userInfo=userDao.getUserInfoByUserId(userId);
+        User user = userDao.getUserById(userId);
+        UserInfo userInfo = userDao.getUserInfoByUserId(userId);
         user.setUserInfo(userInfo);
         return user;
     }
